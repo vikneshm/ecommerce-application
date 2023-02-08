@@ -1,0 +1,67 @@
+.footer-container {
+    background-color: #232f3e;
+    height: 17rem;
+    text-align: center;
+    color: white;
+}
+
+.subscribe-form {
+    display: flex;
+    padding: 1rem;
+}
+
+.subscribe-form div:nth-child(1) {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.subscribe-form div:nth-child(2) {
+    flex: 2;
+}
+
+.subscribe-icon {
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+}
+
+.subscribe-icon + p {
+    margin-left: 1rem;
+    align-self: center;
+}
+
+.subscribe-search {
+    width: 50%;
+    border-radius: 2px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 0 4rem;
+    margin-bottom: 2rem;
+}
+
+.footer-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-grid div h4 {
+    margin-bottom: 0.7rem;
+}
+
+.footer-grid div span, .footer-grid div p {
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+}
+
+.footer-grid div a {
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: white;
+    font-size: 0.7rem;
+}

@@ -8,11 +8,11 @@
 
 html {
     font-family: 'Roboto', sans-serif;
-    color: #fff;
+    color: black;
 }
 
 body {
-    background-color: blue;
+    background-color: #fff
 }
 
 .flex-container {
@@ -21,7 +21,7 @@ body {
     align-items: center;
 }
 
-section {
+.section-container {
     width: 100%;
     max-width: 420px;
     min-height: 414px;
@@ -30,10 +30,11 @@ section {
     justify-content: flex-start;
     padding: 1rem;
     margin: 5rem auto;
-    background-color: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
 
-form {
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -44,35 +45,40 @@ form {
 .instructions {
     font-size: 0.75rem;
     border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
+    background: white;
+    color: black;
     padding: 0.25rem;
     position: relative;
     bottom: -10px;
 }
 
-input[type="text"],
-input[type="password"] {
-    border: 1px solid black
+#username,
+#password,
+#confirm_pwd {
+    border: 1px solid rgba(0,0,0,0.5);
 }
 
-input[type="text"],
-input[type="password"],
-button,
+#username,
+#password,
+#confirm_pwd,
+.form-button,
 textarea {
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
+  font-size: 1.5rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
 
-label,
-button {
+.form-label,
+.form-button {
   margin-top: 1rem;
+  font-weight: 700;
 }
 
-button {
+.form-button {
   padding: 0.5rem;
+  background-color: #ffff33;
+  border: 1px solid rgba(0,0,0,0.5);
 }
 
 .instructions {
@@ -98,3 +104,6 @@ button {
     margin-bottom: 0.5rem;
 }
 
+.link {
+    text-decoration: none;
+}

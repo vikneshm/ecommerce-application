@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
+import {Link} from 'react-router-dom'
 import './register.css'
+import axios from 'axios'
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -20,7 +22,8 @@ const Register = () => {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [errMsg, setErrMsg] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -47,7 +50,16 @@ const Register = () => {
             setErrMsg("Invalid Entry");
             return;
         }else{
-            console.log({username:user,password: pwd,matchpassword:matchPwd})
+            axios.post('https://63d54c7ec52305feff71d627.mockapi.io/userCredentials',
+            {username:user,password: pwd,matchpassword:matchPwd})
+            .then(function (response) {
+                console.log(response);
+                setSuccess(true)
+              })
+              .catch(function (error) {
+                console.log(error);
+                errRef.current.focus();
+              });
         }
         setUser('');
         setPwd('');
@@ -57,11 +69,19 @@ console.log(validName,validPwd,validMatch)
 
     return (
             <div className="flex-container">
-                <section>
+                {success ? (
+                    <section>
+                    <h1>Success!</h1>
+                    <p>
+                        <a href="#">Sign In</a>
+                    </p>
+                </section>
+                ) : (
+                <section className="section-container">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
-                    <form>
-                        <label htmlFor="username">
+                    <form className="register-form">
+                        <label htmlFor="username" className="form-label">
                             Username:
                         </label>
                         <input
@@ -82,7 +102,7 @@ console.log(validName,validPwd,validMatch)
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
-                        <label htmlFor="password">
+                        <label htmlFor="password" className="form-label">
                             Password:
                         </label>
                         <input
@@ -101,7 +121,7 @@ console.log(validName,validPwd,validMatch)
                             Must include uppercase and lowercase letters, a number and a special character.<br />
                             Allowed special characters: !@#$%
                         </p>
-                        <label htmlFor="confirm_pwd">
+                        <label htmlFor="confirm_pwd" className="form-label">
                             Confirm Password:
                         </label>
                         <input
@@ -118,15 +138,16 @@ console.log(validName,validPwd,validMatch)
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             Must match the first password input field.
                         </p>
-                        <button onClick={(e)=>handleSubmit(e)} type="submit" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button className='form-button' onClick={(e)=>handleSubmit(e)} type="submit" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />
                         <span>
-                            <a href="#">Sign In</a>
+                        <Link to='/signIn' className="link">Sign In</Link>
                         </span>
                     </p>
             </section>
+                )}
         </div>
     )
 }
