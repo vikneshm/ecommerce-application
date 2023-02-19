@@ -17,6 +17,7 @@ const Footer = () => {
                             <input type='text' placeholder='Your Email address' className='input-search subscribe-search' ></input>
                             <button className='search-button' type='submit'>Subscribe</button>
                         </div>
+        <div>Roobini</div>
                     </form>
                 </div>
                 <div className='footer-grid'>
